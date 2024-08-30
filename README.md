@@ -4,8 +4,8 @@ Ta repozitorij vsebuje projekt, v katerem analiziram poplave v Sloveniji in glob
 
 Pri projektu bom uporabil računalniški program Wolfrma Mathematica.
 
-Načrt Projekta
-Pridobil bom podatke o preteklosti za cel svet in pa za Slovenijo.
-Analiziral te podatke, jih predstavil na grafu in obrazložil.
-Poskušal ugotoviti kaj se lahko zgodi v prihodnosti, če bomo nadaljevali na isti način kot sedaj.
+Načrt Projekta:
+-Pridobil bom podatke o preteklosti za cel svet in pa za Slovenijo.
+-Analiziral te podatke, jih predstavil na grafu in obrazložil.
+-Poskušal ugotoviti kaj se lahko zgodi v prihodnosti, če bomo nadaljevali na isti način kot sedaj.
 Posnetek predstavitve
