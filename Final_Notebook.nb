@@ -1,0 +1,2628 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     98073,       2620]
+NotebookOptionsPosition[     87639,       2439]
+NotebookOutlinePosition[     88141,       2457]
+CellTagsIndexPosition[     88098,       2454]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Flood Trends Analysis", "Title",
+ CellChangeTimes->{{3.9338639504981422`*^9, 3.9338639598757267`*^9}, 
+   3.9338640262482843`*^9},ExpressionUUID->"4ac3811b-c13b-4a14-9aaa-\
+ae2ccac21e67"],
+
+Cell["Global and Slovenian Floods Data Insights (1750-2010)", "Subtitle",
+ CellChangeTimes->{
+  3.9338640365910697`*^9, {3.9340121697687006`*^9, 
+   3.934012171773243*^9}},ExpressionUUID->"df447c3d-51e8-451f-b3d1-\
+7ca0dc2b696d"],
+
+Cell["Aleksandar Obrovac", "Author",
+ CellChangeTimes->{{3.9338640590937824`*^9, 3.933864060131773*^9}, 
+   3.9340137122425313`*^9},ExpressionUUID->"40aa32af-969a-47ce-959a-\
+a3a4222b3241"],
+
+Cell["Fakulteta za matematiko in fiziko smer Prakti\[CHacek]na matematika", \
+"Department",
+ CellChangeTimes->{
+  3.9340137261193314`*^9},ExpressionUUID->"ddc31bf9-1f1e-4469-b86b-\
+6ad51fde7029"],
+
+Cell["30.8.2024", "Date",
+ CellChangeTimes->{{3.933864069646701*^9, 3.933864072965456*^9}, 
+   3.9340137452420435`*^9},ExpressionUUID->"cc3f3bb4-1609-46a8-aed7-\
+c20a026b7f8f"],
+
+Cell[CellGroupData[{
+
+Cell["Data Import and Basic Manipulation", "Section",
+ CellChangeTimes->{
+  3.933864095208293*^9},ExpressionUUID->"b409098e-a374-4327-9c8e-\
+1ace53e82441"],
+
+Cell[CellGroupData[{
+
+Cell["Importing Data", "Subsection",
+ CellChangeTimes->{{3.9338641412804832`*^9, 3.933864144724746*^9}, {
+  3.9338644988217955`*^9, 
+  3.933864513879126*^9}},ExpressionUUID->"1c875774-c545-40eb-804c-\
+f6e6ee3c9fe6"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"globalFloods", "=", 
+  RowBox[{
+  "Import", "[", 
+   "\"\<C:\\\\Users\\\\Hasnain\\\\OneDrive\\\\Desktop\\\\fiver_project_2\\\\\
+global_floods.csv\>\"", "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"sloveniaFloods", "=", 
+  RowBox[{
+  "Import", "[", 
+   "\"\<C:\\\\Users\\\\Hasnain\\\\OneDrive\\\\Desktop\\\\fiver_project_2\\\\\
+Slovenia_floods.csv\>\"", "]"}]}]}], "Input",
+ CellChangeTimes->{
+  3.9338645186516795`*^9, {3.9338645553506365`*^9, 3.9338646190678663`*^9}},
+ CellLabel->"In[2]:=",ExpressionUUID->"61bafadd-f021-46bd-bc18-0d63ab0f86b7"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\<\"Global occurance of floods\"\>", ",", "\<\"yearly\"\>"}], 
+    "}"}], ",", 
+   RowBox[{
+   "{", "\<\"Source: https://ourworldindata.org/natural-disasters\"\>", "}"}],
+    ",", 
+   RowBox[{"{", "\<\"Base Period: 1970-2023\"\>", "}"}], ",", 
+   RowBox[{"{", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"Year\"\>", ",", "\<\"Number of floods\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1970", ",", "31"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1971", ",", "15"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1972", ",", "15"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1973", ",", "20"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1974", ",", "18"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1975", ",", "17"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1976", ",", "16"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1977", ",", "47"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1978", ",", "47"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1979", ",", "34"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1980", ",", "39"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1981", ",", "41"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1982", ",", "48"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1983", ",", "49"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1984", ",", "46"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1985", ",", "57"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1986", ",", "49"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1987", ",", "66"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1988", ",", "75"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1989", ",", "46"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1990", ",", "60"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1991", ",", "76"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1992", ",", "59"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1993", ",", "84"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1994", ",", "88"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1995", ",", "93"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1996", ",", "95"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1997", ",", "96"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1998", ",", "96"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1999", ",", "123"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2000", ",", "156"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2001", ",", "156"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2002", ",", "173"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2003", ",", "159"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2004", ",", "134"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2005", ",", "191"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2006", ",", "232"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2007", ",", "219"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2008", ",", "174"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2009", ",", "159"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2010", ",", "189"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2011", ",", "160"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2012", ",", "141"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2013", ",", "149"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2014", ",", "139"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2015", ",", "166"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2016", ",", "164"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2017", ",", "129"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2018", ",", "128"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2019", ",", "195"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2020", ",", "206"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2021", ",", "222"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2022", ",", "181"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2023", ",", "166"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.933864620210246*^9, 3.9338648074709606`*^9, 
+  3.9338651626238995`*^9, 3.933865894118781*^9, 3.933924735684393*^9, 
+  3.9339327725858684`*^9, 3.934000765098198*^9},
+ CellLabel->"Out[2]=",ExpressionUUID->"2e67d7d4-48ef-4c2a-ac41-f30dcf2f3d59"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{
+   "{", "\<\"\[UnknownGlyph]tevilo bliskovitih poplav v Sloveniji od leta \
+1750 - 2010\"\>", "}"}], ",", 
+   RowBox[{"{", "}"}], ",", 
+   RowBox[{
+   "{", "\<\"Source: \
+https://www.researchgate.net/profile/Tajan-Trobec/publication/322267744_\
+Frequency_and_seasonality_of_flash_floods_in_Slovenia/links/\
+5a4f688e0f7e9bbfacfd0010/Frequency-and-seasonality-of-flash-floods-in-\
+Slovenia.pdf\"\>", "}"}], ",", 
+   RowBox[{
+   "{", "\<\"OBDOBJE; \[UnknownGlyph]tevilo bliskovitih poplav v tem \
+obdobju\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1750 - 1770; 1\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1771 - 1790; 0\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1791 - 1810; 1\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1811 - 1830; 1\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1831 - 1850; 1\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1851 - 1870; 3\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1871 - 1890; 10\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1891 - 1910; 14\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1911 - 1930; 12\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1931 - 1950; 9\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1951 - 1970; 23\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1971 - 1990; 27\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1991 - 2010; 27\"\>", "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.933864620210246*^9, 3.9338648074709606`*^9, 
+  3.9338651626238995`*^9, 3.933865894118781*^9, 3.933924735684393*^9, 
+  3.9339327725858684`*^9, 3.9340007651294403`*^9},
+ CellLabel->"Out[3]=",ExpressionUUID->"638e7365-5f9d-40c3-91da-18aa56acf976"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Cleaning and Structuring Data", "Subsection",
+ CellChangeTimes->{
+  3.933864713246098*^9, {3.9338650185919*^9, 3.9338650292024765`*^9}, {
+   3.933933961182234*^9, 
+   3.933933976770236*^9}},ExpressionUUID->"cdeb2554-de45-4000-9029-\
+b5967cdae13f"],
+
+Cell["\<\
+This data includes metadata and column headers that need to be removed. The \
+core data starts from a specific index in the list.\
+\>", "Text",
+ CellChangeTimes->{
+  3.933864767089226*^9, {3.9338650494593616`*^9, 
+   3.933865050768429*^9}},ExpressionUUID->"28c1a775-51d4-46f4-af9d-\
+9b0a4192cdaa"],
+
+Cell[CellGroupData[{
+
+Cell["For Global Floods Data", "Subsubsection",
+ CellChangeTimes->{
+  3.9338651109514904`*^9},ExpressionUUID->"646a155d-51dd-440b-8572-\
+ae7eceb2884f"],
+
+Cell["\<\
+Skip Metadata:
+Metadata and headers are usually in the first few entries, so start \
+extracting from the relevant index.\
+\>", "Text",
+ CellChangeTimes->{{3.933865125100912*^9, 
+  3.9338651268070755`*^9}},ExpressionUUID->"09221a6d-3db5-4332-b85c-\
+ed49c882b6a4"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"globalFloodsData", "=", 
+  RowBox[{"globalFloods", "[", 
+   RowBox[{"[", 
+    RowBox[{"6", ";;"}], "]"}], "]"}], 
+  RowBox[{"(*", 
+   RowBox[{"Skip", " ", "metadata", " ", "and", " ", "headers"}], 
+   "*)"}]}]], "Input",
+ CellChangeTimes->{{3.933865131791621*^9, 3.9338651857799735`*^9}, {
+  3.9338659198012094`*^9, 3.933865920202571*^9}, {3.9339331996153183`*^9, 
+  3.933933213554923*^9}},
+ CellLabel->"In[4]:=",ExpressionUUID->"23351f6c-e84d-4e76-b6ce-f07032a91455"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1970", ",", "31"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1971", ",", "15"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1972", ",", "15"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1973", ",", "20"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1974", ",", "18"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1975", ",", "17"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1976", ",", "16"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1977", ",", "47"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1978", ",", "47"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1979", ",", "34"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1980", ",", "39"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1981", ",", "41"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1982", ",", "48"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1983", ",", "49"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1984", ",", "46"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1985", ",", "57"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1986", ",", "49"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1987", ",", "66"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1988", ",", "75"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1989", ",", "46"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1990", ",", "60"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1991", ",", "76"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1992", ",", "59"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1993", ",", "84"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1994", ",", "88"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1995", ",", "93"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1996", ",", "95"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1997", ",", "96"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1998", ",", "96"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1999", ",", "123"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2000", ",", "156"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2001", ",", "156"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2002", ",", "173"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2003", ",", "159"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2004", ",", "134"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2005", ",", "191"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2006", ",", "232"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2007", ",", "219"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2008", ",", "174"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2009", ",", "159"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2010", ",", "189"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2011", ",", "160"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2012", ",", "141"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2013", ",", "149"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2014", ",", "139"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2015", ",", "166"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2016", ",", "164"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2017", ",", "129"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2018", ",", "128"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2019", ",", "195"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2020", ",", "206"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2021", ",", "222"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2022", ",", "181"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2023", ",", "166"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.933933214124535*^9, 3.9340007652392583`*^9},
+ CellLabel->"Out[4]=",ExpressionUUID->"e4be2e18-c655-42e3-a2e3-2dfde0ab0774"]
+}, Open  ]],
+
+Cell["\<\
+The globalFloodsData variable will now contain a list of pairs {year, number \
+of floods}.\
+\>", "Text",
+ CellChangeTimes->{
+  3.93386595496341*^9},ExpressionUUID->"90deefa3-94b0-4887-a212-e0132fb9c3ea"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["For Slovenia Floods Data", "Subsubsection",
+ CellChangeTimes->{{3.9338659796322904`*^9, 
+  3.933865992256579*^9}},ExpressionUUID->"0fee2695-b3d6-47ca-89bd-\
+74f9546ca47b"],
+
+Cell["\<\
+Skip Metadata:
+Metadata and headers are included, so start extracting the actual data.\
+\>", "Text",
+ CellChangeTimes->{{3.9338660229202847`*^9, 
+  3.933866032997655*^9}},ExpressionUUID->"0f0facb6-a7db-44d9-ac44-\
+d3331637a87b"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Skip", " ", "metadata", " ", "and", " ", "headers"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{"sloveniaFloodsRaw", "=", 
+   RowBox[{"sloveniaFloods", "[", 
+    RowBox[{"[", 
+     RowBox[{"5", ";;"}], "]"}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.933932801253456*^9, 3.933932804898436*^9}, {
+  3.9339332031100655`*^9, 3.9339332165351286`*^9}, {3.9339545914558735`*^9, 
+  3.933954600721103*^9}},
+ CellLabel->"In[5]:=",ExpressionUUID->"ce6896aa-97ed-4ed0-b639-2e5f6532ada8"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", "\<\"1750 - 1770; 1\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1771 - 1790; 0\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1791 - 1810; 1\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1811 - 1830; 1\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1831 - 1850; 1\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1851 - 1870; 3\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1871 - 1890; 10\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1891 - 1910; 14\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1911 - 1930; 12\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1931 - 1950; 9\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1951 - 1970; 23\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1971 - 1990; 27\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1991 - 2010; 27\"\>", "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.933933217037109*^9, 3.9339546021603637`*^9, 
+  3.93400076528843*^9},
+ CellLabel->"Out[5]=",ExpressionUUID->"b73e6bbd-eebd-4b4d-af79-c42d54205c6d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"sloveniaFloodsRaw", "=", 
+  RowBox[{"sloveniaFloods", "[", 
+   RowBox[{"[", 
+    RowBox[{"5", ";;"}], "]"}], "]"}], 
+  RowBox[{"(*", 
+   RowBox[{"Skip", " ", "metadata", " ", "and", " ", "headers"}], 
+   "*)"}]}]], "Input",
+ CellChangeTimes->{{3.933865823514244*^9, 3.9338658414529495`*^9}, 
+   3.9338658788952203`*^9, 3.9338660479374924`*^9, 3.93386618070352*^9},
+ CellLabel->"In[6]:=",ExpressionUUID->"d561d3cd-b1ac-480d-9340-ba252eccc137"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", "\<\"1750 - 1770; 1\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1771 - 1790; 0\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1791 - 1810; 1\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1811 - 1830; 1\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1831 - 1850; 1\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1851 - 1870; 3\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1871 - 1890; 10\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1891 - 1910; 14\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1911 - 1930; 12\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1931 - 1950; 9\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1951 - 1970; 23\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1971 - 1990; 27\"\>", "}"}], ",", 
+   RowBox[{"{", "\<\"1991 - 2010; 27\"\>", "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.93386618146939*^9, 3.933924742805663*^9, 
+  3.93400076541124*^9},
+ CellLabel->"Out[6]=",ExpressionUUID->"d606750b-92c8-4dae-8a7c-c393a7f2a787"]
+}, Open  ]],
+
+Cell["Preprocessing Slovenia Floods Data:", "Text",
+ CellChangeTimes->{{3.9339333575181284`*^9, 3.933933371133025*^9}, {
+  3.933954406637116*^9, 
+  3.933954409145482*^9}},ExpressionUUID->"d73d12cc-8304-4a17-9f97-\
+d5ed0431336a"],
+
+Cell["Step 1: Split the strings by \[OpenCurlyDoubleQuote] - \
+\[OpenCurlyDoubleQuote] and  \[OpenCurlyDoubleQuote]; \
+\[OpenCurlyDoubleQuote]", "Text",
+ CellChangeTimes->{{3.9339549455544195`*^9, 
+  3.9339549715838223`*^9}},ExpressionUUID->"2342dde9-5063-4681-8ea4-\
+e1483ec8b0bf"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"sloveniaFloodsSplit", "=", 
+  RowBox[{"Map", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"StringSplit", "[", 
+      RowBox[{"#", ",", 
+       RowBox[{"{", 
+        RowBox[{"\"\< - \>\"", ",", "\"\<; \>\""}], "}"}]}], "]"}], "&"}], 
+    ",", "sloveniaFloodsRaw"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.9339328296250505`*^9, 3.9339328324613733`*^9}, {
+  3.9339543822227*^9, 3.9339543857597055`*^9}, {3.9339546612556787`*^9, 
+  3.933954662347783*^9}, {3.933954766424323*^9, 3.933954778116565*^9}, {
+  3.933954892811202*^9, 3.9339549235026755`*^9}},
+ CellLabel->"In[7]:=",ExpressionUUID->"991584b0-d01c-4594-9928-fe924a68ac89"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"\<\"1750\"\>", ",", "\<\"1770\"\>", ",", "\<\"1\"\>"}], "}"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"\<\"1771\"\>", ",", "\<\"1790\"\>", ",", "\<\"0\"\>"}], "}"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"\<\"1791\"\>", ",", "\<\"1810\"\>", ",", "\<\"1\"\>"}], "}"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"\<\"1811\"\>", ",", "\<\"1830\"\>", ",", "\<\"1\"\>"}], "}"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"\<\"1831\"\>", ",", "\<\"1850\"\>", ",", "\<\"1\"\>"}], "}"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"\<\"1851\"\>", ",", "\<\"1870\"\>", ",", "\<\"3\"\>"}], "}"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"\<\"1871\"\>", ",", "\<\"1890\"\>", ",", "\<\"10\"\>"}], "}"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"\<\"1891\"\>", ",", "\<\"1910\"\>", ",", "\<\"14\"\>"}], "}"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"\<\"1911\"\>", ",", "\<\"1930\"\>", ",", "\<\"12\"\>"}], "}"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"\<\"1931\"\>", ",", "\<\"1950\"\>", ",", "\<\"9\"\>"}], "}"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"\<\"1951\"\>", ",", "\<\"1970\"\>", ",", "\<\"23\"\>"}], "}"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"\<\"1971\"\>", ",", "\<\"1990\"\>", ",", "\<\"27\"\>"}], "}"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"{", 
+     RowBox[{"\<\"1991\"\>", ",", "\<\"2010\"\>", ",", "\<\"27\"\>"}], "}"}], 
+    "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.9339549241898465`*^9, 3.9340007654268703`*^9},
+ CellLabel->"Out[7]=",ExpressionUUID->"410d0c54-c561-4bc2-8197-3d91ba854120"]
+}, Open  ]],
+
+Cell["Step 2: Flatten the nested lists", "Text",
+ CellChangeTimes->{{3.933955055315477*^9, 
+  3.9339550645348425`*^9}},ExpressionUUID->"62590c28-f92c-40b2-81d6-\
+49be2d89e51c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"sloveniaFloodsFlattened", "=", 
+  RowBox[{"Flatten", "[", 
+   RowBox[{"sloveniaFloodsSplit", ",", "1"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.9339547861443424`*^9, 3.933954793864114*^9}, {
+  3.9339550500261374`*^9, 3.933955051108937*^9}},
+ CellLabel->"In[8]:=",ExpressionUUID->"e5d7f4be-58b1-4008-bb16-de3136d6008a"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\<\"1750\"\>", ",", "\<\"1770\"\>", ",", "\<\"1\"\>"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"1771\"\>", ",", "\<\"1790\"\>", ",", "\<\"0\"\>"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"1791\"\>", ",", "\<\"1810\"\>", ",", "\<\"1\"\>"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"1811\"\>", ",", "\<\"1830\"\>", ",", "\<\"1\"\>"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"1831\"\>", ",", "\<\"1850\"\>", ",", "\<\"1\"\>"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"1851\"\>", ",", "\<\"1870\"\>", ",", "\<\"3\"\>"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"1871\"\>", ",", "\<\"1890\"\>", ",", "\<\"10\"\>"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"1891\"\>", ",", "\<\"1910\"\>", ",", "\<\"14\"\>"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"1911\"\>", ",", "\<\"1930\"\>", ",", "\<\"12\"\>"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"1931\"\>", ",", "\<\"1950\"\>", ",", "\<\"9\"\>"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"1951\"\>", ",", "\<\"1970\"\>", ",", "\<\"23\"\>"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"1971\"\>", ",", "\<\"1990\"\>", ",", "\<\"27\"\>"}], "}"}], 
+   ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"1991\"\>", ",", "\<\"2010\"\>", ",", "\<\"27\"\>"}], "}"}]}],
+   "}"}]], "Output",
+ CellChangeTimes->{3.9339547944422493`*^9, 3.9340007654581165`*^9},
+ CellLabel->"Out[8]=",ExpressionUUID->"52b1eaf2-0bb9-4585-899c-76d7b06dfe2d"]
+}, Open  ]],
+
+Cell["Step 3: Convert to numerical values.", "Text",
+ CellChangeTimes->{{3.933955078930831*^9, 
+  3.9339550855688505`*^9}},ExpressionUUID->"c2946e4d-f5a8-4dc3-b5e4-\
+fc7c30557194"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"sloveniaFloodsData", "=", 
+  RowBox[{"sloveniaFloodsFlattened", "/.", " ", 
+   RowBox[{"{", 
+    RowBox[{"s_String", ":>", 
+     RowBox[{"ToExpression", "[", "s", "]"}]}], "}"}]}]}]], "Input",
+ CellChangeTimes->{{3.9339548168395033`*^9, 3.933954829428647*^9}, {
+  3.9339550721089497`*^9, 3.9339550977464523`*^9}},
+ CellLabel->"In[9]:=",ExpressionUUID->"353e1479-7123-4cc1-8c47-ea8ce6e5d4dd"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1750", ",", "1770", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1771", ",", "1790", ",", "0"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1791", ",", "1810", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1811", ",", "1830", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1831", ",", "1850", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1851", ",", "1870", ",", "3"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1871", ",", "1890", ",", "10"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1891", ",", "1910", ",", "14"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1911", ",", "1930", ",", "12"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1931", ",", "1950", ",", "9"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1951", ",", "1970", ",", "23"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1971", ",", "1990", ",", "27"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1991", ",", "2010", ",", "27"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.933954830067161*^9, {3.933955075254734*^9, 3.933955098630974*^9}, 
+   3.9340007655135975`*^9},
+ CellLabel->"Out[9]=",ExpressionUUID->"abf83e54-fd70-49fd-bbce-9ab88cc5219e"]
+}, Open  ]],
+
+Cell["\<\
+The sloveniaFloodsData variable now contain list of pairs {starting_year, \
+ending_year, number of floods}.\
+\>", "Text",
+ CellChangeTimes->{{3.934012380448635*^9, 
+  3.93401244089808*^9}},ExpressionUUID->"e52bd42e-86a3-46d8-b416-\
+5bab2e15fc47"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Visualizations", "Section",
+ CellChangeTimes->{{3.933933885308695*^9, 3.933933888141389*^9}, 
+   3.933934021175152*^9},ExpressionUUID->"e421c315-a761-482f-918e-\
+2fde31e360a2"],
+
+Cell[CellGroupData[{
+
+Cell["For Global Data:", "Subsection",
+ CellChangeTimes->{{3.9339527118254557`*^9, 
+  3.933952716722514*^9}},ExpressionUUID->"6fa41555-02a9-4e67-9fec-\
+3f2881e941b6"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ListLinePlot", "[", 
+  RowBox[{"globalFloodsData", ",", 
+   RowBox[{"PlotLabel", "->", "\"\<Number of Global Floods Over Time\>\""}], 
+   ",", 
+   RowBox[{"AxesLabel", "->", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Year\>\"", ",", "\"\<Number of Floods\>\""}], "}"}]}], ",", 
+   RowBox[{"PlotStyle", "->", "Blue"}], ",", " ", 
+   RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9339346714130077`*^9, 3.933934680095273*^9}, {
+  3.9339348494305205`*^9, 3.9339348542958946`*^9}},
+ CellLabel->"In[10]:=",ExpressionUUID->"6a6795be-0bac-4e85-b0fc-cc80d8f5c6be"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{}, {}, 
+    {RGBColor[0, 0, 1], PointSize[
+      NCache[
+       Rational[1, 60], 0.016666666666666666`]], AbsoluteThickness[1.6], 
+     StyleBox[LineBox[CompressedData["
+1:eJxdj69LQ2EYhS9iMBgMBoNhgsEgMmWIQXDiwIU5xqZuQWTOTScqGgwGww0G
+g8FgMMjmn2I0GAwGw8KCwWAwGAwGf5zzIH4XLs99eN/vnPuN1A6KjZ4oiqa/
+3x/+PnettD7mxHt8QnwI/BFPiU/4lNjBJ8UunhSf7fGi+BL4K/vz4hvzBfEd
+z4gf7GfFT+b2qG06v9ce58S+9v/9frwgDthvi+JgkDeE58VhvCQmyFsSR5mv
+iGP4qjhuT5fFJP32FPsVcSbwWfbXnUP/ppgJPGu/aYg5e9fzAnlVcZn5tlih
+f19cs1d3Tc47vx7kN+l33h55dfGQ+YZ4hNfEY/o8P6HP52Puaz+1J3yfM/rs
+5+Q1xQvydsRL3Pe74n+2xOu//i+hJHy/
+       "]],
+      FontFamily->"Arial"]}}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{
+    FormBox["\"Year\"", TraditionalForm], 
+    FormBox["\"Number of Floods\"", TraditionalForm]},
+  AxesOrigin->{1968.8958333333333`, 0},
+  BaseStyle->{FontFamily -> "Arial"},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImageSize->Large,
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotLabel->FormBox["\"Number of Global Floods Over Time\"", TraditionalForm],
+  PlotRange->{{1968.8958333333333`, 2023.}, {0, 232.}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.9339346810841455`*^9, 3.933934855096182*^9, 
+  3.934000765754992*^9},
+ CellLabel->"Out[10]=",ExpressionUUID->"b0dac89f-eb48-47d6-bef2-1e403fafaac1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ListLogPlot", "[", 
+  RowBox[{"globalFloodsData", ",", 
+   RowBox[{"PlotLabel", "->", "\"\<Number of Global Floods Over Time\>\""}], 
+   ",", 
+   RowBox[{"AxesLabel", "->", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Year\>\"", ",", "\"\<Number of Floods\>\""}], "}"}]}], ",", 
+   RowBox[{"PlotStyle", "->", "Blue"}], ",", " ", 
+   RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.9339397649566035`*^9, 3.9339397707908993`*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"d0b81805-1f10-4c5f-9e95-01a0a5af6760"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, 
+   {RGBColor[0, 0, 1], PointSize[0.011000000000000001`], AbsoluteThickness[
+    1.6], 
+    StyleBox[PointBox[CompressedData["
+1:eJxd0G1IU2EUB/AxrFU6W6YpGpnVB2vrhWU1Q/C4Ukb4lgVbprTM1WhCczpY
+M2qFNiFbG/SGjeegRaFp0AcH1gobhdlSKoZESAaOWlQkFW4ui8znQLQHLg8/
+/uf+z+Vm1Ryr0AkFAsHW2efvPXeeMqiUulQjlniY83MGmaqS3GXd87hfxDjA
+wDXR0KQMi7hfMzjrMmxvyiSPMbCeij4ydM/nfsfga270t3IDOcjAM+ncmD6c
+yB2K8WcGU+L+0zNbErgnGYyKW/XTpWLuHwxKexyFuj5yhIH5fnmeIkLvzzBQ
+V8rvmFYt5hYg1CmdDxI7KI9D2Nfe25Eik3AvwP/nExBurt71JsdHuQShStTZ
+nlG4hDs5pi8N4ZxcN3ZNS/PLEZJCA77bFTS/EuH42sFpXRnlaxACuqmF2f2U
+ZyNo66t/PguRZQjG0e++g1lJ3JsQJry/bNJt5ByEyA3RyWABWRHjPISPl00F
+vflLuQHhyCVho3hzMvfOGKsQ7NbHloibXIyQdsD7ylFELkcwaES7D12hvr0I
+94yy8B5hCrcGYSjQ3GIeIlchdBmHX+odZC2CxF5fO95JfbUx/XqEtxqHvS1M
+rkM4M6iujhaTjQgr+hs8dj/tb0RY/yHDtiiOcsvs/45P9b73Un4CYUCq/NJj
+otyGcD3YUrPjMLkZwe/p6zIZab4V4e63dLTqyW0IiqP58vOp9P1OhHX7FU8e
+lpEvIox/umVWu8lXEaQXikaUfup3/9v/Bxst+RE=
+      "]],
+     FontFamily->"Arial"]}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{
+    FormBox["\"Year\"", TraditionalForm], 
+    FormBox["\"Number of Floods\"", TraditionalForm]},
+  AxesOrigin->{1968.8958333333333`, 2.4937323878740756`},
+  BaseStyle->{FontFamily -> "Arial"},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{
+     Charting`ScaledTicks[{Log, Exp}], 
+     Charting`ScaledFrameTicks[{Identity, Identity}]}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImageSize->Large,
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Exp[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Exp[
+         Part[#, 2]]}& )}},
+  PlotLabel->FormBox["\"Number of Global Floods Over Time\"", TraditionalForm],
+  PlotRange->{{1968.8958333333333`, 2023.}, {2.4937323878740756`, 
+   5.44673737166631}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->FrontEndValueCache[{Automatic, 
+     Charting`ScaledTicks[{Log, Exp}]}, {Automatic, {{2.995732273553991, 
+       FormBox["20", TraditionalForm], {0.01, 0.}}, {3.912023005428146, 
+       FormBox["50", TraditionalForm], {0.01, 0.}}, {4.605170185988092, 
+       FormBox["100", TraditionalForm], {0.01, 0.}}, {5.298317366548036, 
+       FormBox["200", TraditionalForm], {0.01, 0.}}, {2.302585092994046, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      2.70805020110221, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      3.4011973816621555`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      3.6888794541139363`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      4.0943445622221, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      4.248495242049359, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      4.382026634673881, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      4.499809670330265, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      5.0106352940962555`, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      5.703782474656201, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      5.991464547107982, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      6.214608098422191, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      6.396929655216146, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      6.551080335043404, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      6.684611727667927, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      6.802394763324311, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 0.}}, {
+      6.907755278982137, 
+       FormBox[
+        TemplateBox[{0., 0.}, "Spacer2"], TraditionalForm], {0.005, 
+       0.}}}}]]], "Output",
+ CellChangeTimes->{3.9339397713741965`*^9, 3.9340007658355513`*^9},
+ CellLabel->"Out[11]=",ExpressionUUID->"6e0b2770-5a9e-4892-86aa-3d0931dc1e70"]
+}, Open  ]],
+
+Cell["\<\
+To show the distribution of flood counts, we will create a histogram\
+\>", "Text",
+ CellChangeTimes->{{3.933953504174413*^9, 3.933953524251707*^9}, {
+  3.9339536486983976`*^9, 
+  3.933953649808443*^9}},ExpressionUUID->"7d9610e1-beb5-41d5-8f0f-\
+0968c0a96ef7"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"floodsData", "=", 
+    RowBox[{"globalFloodsData", "[", 
+     RowBox[{"[", 
+      RowBox[{"All", ",", "2"}], "]"}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Histogram", "[", 
+   RowBox[{"floodsData", ",", 
+    RowBox[{
+    "PlotLabel", "->", "\"\<Histogram of Global Floods per Year\>\""}], ",", 
+    RowBox[{"AxesLabel", "->", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Number of Floods\>\"", ",", "\"\<Frequency\>\""}], "}"}]}],
+     ",", 
+    RowBox[{"ChartStyle", "->", "LightBlue"}], ",", " ", 
+    RowBox[{"ImageSize", "\[Rule]", "Large"}]}], "]"}], 
+  "\n"}], "\n"}], "Input",
+ CellChangeTimes->{{3.933952588026455*^9, 3.933952615082856*^9}, {
+  3.933952828776684*^9, 3.933952881793392*^9}, {3.9339529340077868`*^9, 
+  3.933952945260085*^9}, {3.933952992076692*^9, 3.9339530104408274`*^9}, {
+  3.933953074341992*^9, 3.9339531509160004`*^9}, {3.933953209486903*^9, 
+  3.933953211856967*^9}, {3.9339536879385767`*^9, 3.9339537618798523`*^9}},
+ CellLabel->"In[12]:=",ExpressionUUID->"89e9c94a-09fe-435f-941a-220b2d8b0c94"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {RGBColor[0.87, 0.94, 1], EdgeForm[{Opacity[0.651], Thickness[Small]}], {}, 
+    {RGBColor[0.87, 0.94, 1], EdgeForm[{Opacity[0.651], Thickness[Small]}], 
+     TagBox[
+      TooltipBox[
+       TagBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            EdgeForm[{
+              GrayLevel[0.5], 
+              AbsoluteThickness[1.5], 
+              Opacity[0.66]}], {}, {}], 
+           RectangleBox[{0., 0}, {50., 17.}, "RoundingRadius" -> 0]},
+          
+          ImageSizeCache->{{22.60788146141913, 
+           85.42536795061046}, {-83.098113297648, 104.2546875}}],
+         "DelayedMouseEffectStyle"],
+        StatusArea[#, 17]& ,
+        TagBoxNote->"17"],
+       StyleBox["17", {}, StripOnInput -> False]],
+      Annotation[#, 
+       Style[17, {}], "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       TagBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            EdgeForm[{
+              GrayLevel[0.5], 
+              AbsoluteThickness[1.5], 
+              Opacity[0.66]}], {}, {}], 
+           RectangleBox[{50., 0}, {100., 12.}, "RoundingRadius" -> 0]},
+          
+          ImageSizeCache->{{85.07536795061046, 
+           147.89285443980182`}, {-28.097289533633898`, 104.25468750000002`}}],
+         "DelayedMouseEffectStyle"],
+        StatusArea[#, 12]& ,
+        TagBoxNote->"12"],
+       StyleBox["12", {}, StripOnInput -> False]],
+      Annotation[#, 
+       Style[12, {}], "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       TagBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            EdgeForm[{
+              GrayLevel[0.5], 
+              AbsoluteThickness[1.5], 
+              Opacity[0.66]}], {}, {}], 
+           RectangleBox[{100., 0}, {150., 7.}, "RoundingRadius" -> 0]},
+          ImageSizeCache->{{147.5428544398018, 210.3603409289931}, {
+           26.903534230380217`, 104.25468750000002`}}],
+         "DelayedMouseEffectStyle"],
+        StatusArea[#, 7]& ,
+        TagBoxNote->"7"],
+       StyleBox["7", {}, StripOnInput -> False]],
+      Annotation[#, 
+       Style[7, {}], "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       TagBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            EdgeForm[{
+              GrayLevel[0.5], 
+              AbsoluteThickness[1.5], 
+              Opacity[0.66]}], {}, {}], 
+           RectangleBox[{150., 0}, {200., 14.}, "RoundingRadius" -> 0]},
+          
+          ImageSizeCache->{{210.01034092899312`, 
+           272.8278274181845}, {-50.09761903923956, 104.25468750000002`}}],
+         "DelayedMouseEffectStyle"],
+        StatusArea[#, 14]& ,
+        TagBoxNote->"14"],
+       StyleBox["14", {}, StripOnInput -> False]],
+      Annotation[#, 
+       Style[14, {}], "Tooltip"]& ], 
+     TagBox[
+      TooltipBox[
+       TagBox[
+        TagBox[
+         DynamicBox[{
+           FEPrivate`If[
+            CurrentValue["MouseOver"], 
+            EdgeForm[{
+              GrayLevel[0.5], 
+              AbsoluteThickness[1.5], 
+              Opacity[0.66]}], {}, {}], 
+           RectangleBox[{200., 0}, {250., 4.}, "RoundingRadius" -> 0]},
+          
+          ImageSizeCache->{{272.47782741818446`, 335.2953139073758}, {
+           59.90402848878869, 104.25468750000002`}}],
+         "DelayedMouseEffectStyle"],
+        StatusArea[#, 4]& ,
+        TagBoxNote->"4"],
+       StyleBox["4", {}, StripOnInput -> False]],
+      Annotation[#, 
+       Style[4, {}], "Tooltip"]& ]}, {}, {}}, {{}, {}, {}, {}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{
+    FormBox["\"Number of Floods\"", TraditionalForm], 
+    FormBox["\"Frequency\"", TraditionalForm]},
+  AxesOrigin->{-5., 0},
+  BaseStyle->{FontFamily -> "Arial"},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImageSize->Large,
+  PlotLabel->FormBox[
+   "\"Histogram of Global Floods per Year\"", TraditionalForm],
+  PlotRange->{{0., 250.}, {All, All}},
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{{3.933953674348831*^9, 3.9339537625394154`*^9}, 
+   3.93400076595829*^9},
+ CellLabel->"Out[13]=",ExpressionUUID->"6c443e18-c577-49fb-b8b4-7f7f0a5bc2b5"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["For Slovenia Data:", "Subsection",
+ CellChangeTimes->{{3.933953797416278*^9, 
+  3.933953811880239*^9}},ExpressionUUID->"9b40a2bd-de82-45f3-8840-\
+890d15905804"],
+
+Cell["\<\
+In Slovenia data each entry represents a range of years. We can use the \
+midpoint of each range for time series plots.\
+\>", "Text",
+ CellChangeTimes->{{3.9339538656255856`*^9, 3.933953974949084*^9}, 
+   3.933955781238673*^9},ExpressionUUID->"ef5f01ba-fc30-4227-ae4d-\
+7881587a0211"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"sloveniaFloodsMidpoints", "=", 
+  RowBox[{"N", "[", 
+   RowBox[{"Map", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Mean", "[", 
+         RowBox[{"Take", "[", 
+          RowBox[{"#", ",", "2"}], "]"}], "]"}], ",", 
+        RowBox[{"Last", "[", "#", "]"}]}], "}"}], "&"}], ",", 
+     "sloveniaFloodsData"}], "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.9339539782692575`*^9, 3.933954016802873*^9}, {
+   3.933954301961553*^9, 3.9339543077708235`*^9}, {3.933954416937893*^9, 
+   3.9339544439031143`*^9}, 3.9339551164456415`*^9, {3.9340121107794037`*^9, 
+   3.934012111938697*^9}},
+ CellLabel->"In[90]:=",ExpressionUUID->"83de4f5e-a6c5-485b-8fd9-6838736e0f21"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1760.`", ",", "1.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1780.5`", ",", "0.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1800.5`", ",", "1.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1820.5`", ",", "1.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1840.5`", ",", "1.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1860.5`", ",", "3.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1880.5`", ",", "10.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1900.5`", ",", "14.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1920.5`", ",", "12.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1940.5`", ",", "9.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1960.5`", ",", "23.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1980.5`", ",", "27.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"2000.5`", ",", "27.`"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.933954308271551*^9, 3.9339544449063606`*^9, {3.933954544200221*^9, 
+   3.9339545473051715`*^9}, 3.933955124599655*^9, 3.934000765989543*^9, 
+   3.9340120559405065`*^9, 3.9340121126731467`*^9},
+ CellLabel->"Out[90]=",ExpressionUUID->"ae92241a-461e-43be-807b-85f0c5e11ce0"]
+}, Open  ]],
+
+Cell["\<\
+Below is a List Line Plot that shows the number of floods in Slovenia over \
+time, highlighting variations in flood frequency.\
+\>", "Text",
+ CellChangeTimes->{{3.9339556793040266`*^9, 
+  3.933955686789802*^9}},ExpressionUUID->"6295cfbf-6b71-49a8-861d-\
+eb8b07de987a"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ListLinePlot", "[", 
+   RowBox[{"sloveniaFloodsMidpoints", ",", 
+    RowBox[{"PlotStyle", "->", 
+     RowBox[{"RGBColor", "[", 
+      RowBox[{"1", ",", "0", ",", "0"}], "]"}]}], ",", 
+    RowBox[{"PlotMarkers", "->", "Automatic"}], ",", 
+    RowBox[{
+    "PlotLabel", "->", "\"\<Number of Floods in Slovenia Over Time\>\""}], 
+    ",", 
+    RowBox[{"AxesLabel", "->", 
+     RowBox[{"{", 
+      RowBox[{"\"\<Year\>\"", ",", "\"\<Number of Floods\>\""}], "}"}]}], ",", 
+    RowBox[{"Ticks", "->", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"sloveniaFloodsMidpoints", "[", 
+        RowBox[{"[", 
+         RowBox[{"All", ",", "1"}], "]"}], "]"}], ",", "Automatic"}], "}"}]}],
+     ",", 
+    RowBox[{"ImageSize", "->", "Large"}], ",", 
+    RowBox[{"Joined", "->", "True"}]}], "]"}], "\n"}]], "Input",
+ CellChangeTimes->{{3.933954036895011*^9, 3.933954036895011*^9}, 
+   3.933955158817608*^9, 3.933955231089714*^9, 3.9339555487773113`*^9},
+ CellLabel->"In[91]:=",ExpressionUUID->"8ba0bcb4-fb6a-403a-975f-3476d34618ef"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{{}, {}, 
+     {RGBColor[1, 0, 0], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      StyleBox[
+       LineBox[{{1760., 1.}, {1780.5, 0.}, {1800.5, 1.}, {1820.5, 1.}, {
+        1840.5, 1.}, {1860.5, 3.}, {1880.5, 10.}, {1900.5, 14.}, {1920.5, 
+        12.}, {1940.5, 9.}, {1960.5, 23.}, {1980.5, 27.}, {2000.5, 27.}}],
+       FontFamily->"Arial"]}}, 
+    {RGBColor[1, 0, 0], PointSize[
+      NCache[
+       Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+     StyleBox[GeometricTransformationBox[InsetBox[
+        FormBox[
+         StyleBox[
+          GraphicsBox[
+           {EdgeForm[None], DiskBox[{0, 0}]}],
+          StripOnInput->False,
+          GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+            PointSize[
+             Rational[7, 360]], 
+            AbsoluteThickness[1.6], FontFamily -> "Arial", 
+            RGBColor[1, 0, 0]]}],
+         TraditionalForm], {0., 0.}, Automatic, Offset[6.272]], {{{1760., 
+       1.}}, {{1780.5, 0.}}, {{1800.5, 1.}}, {{1820.5, 1.}}, {{1840.5, 
+       1.}}, {{1860.5, 3.}}, {{1880.5, 10.}}, {{1900.5, 14.}}, {{1920.5, 
+       12.}}, {{1940.5, 9.}}, {{1960.5, 23.}}, {{1980.5, 27.}}, {{2000.5, 
+       27.}}}],
+      FontFamily->"Arial"]}}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{
+    FormBox["\"Year\"", TraditionalForm], 
+    FormBox["\"Number of Floods\"", TraditionalForm]},
+  AxesOrigin->{1754.9895833333335`, 0},
+  BaseStyle->{FontFamily -> "Arial"},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImageSize->Large,
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotLabel->FormBox[
+   "\"Number of Floods in Slovenia Over Time\"", TraditionalForm],
+  PlotRange->{{1754.9895833333335`, 2000.5}, {0, 27.}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{{{1760., 
+      FormBox["1760.`", TraditionalForm]}, {1780.5, 
+      FormBox["1780.5`", TraditionalForm]}, {1800.5, 
+      FormBox["1800.5`", TraditionalForm]}, {1820.5, 
+      FormBox["1820.5`", TraditionalForm]}, {1840.5, 
+      FormBox["1840.5`", TraditionalForm]}, {1860.5, 
+      FormBox["1860.5`", TraditionalForm]}, {1880.5, 
+      FormBox["1880.5`", TraditionalForm]}, {1900.5, 
+      FormBox["1900.5`", TraditionalForm]}, {1920.5, 
+      FormBox["1920.5`", TraditionalForm]}, {1940.5, 
+      FormBox["1940.5`", TraditionalForm]}, {1960.5, 
+      FormBox["1960.5`", TraditionalForm]}, {1980.5, 
+      FormBox["1980.5`", TraditionalForm]}, {2000.5, 
+      FormBox["2000.5`", TraditionalForm]}}, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.9339540385219746`*^9, {3.9339551362313547`*^9, 3.9339551597082634`*^9}, 
+   3.933955234065608*^9, 3.9340007662712545`*^9, 3.934012058850566*^9, 
+   3.934012115662351*^9},
+ CellLabel->"Out[91]=",ExpressionUUID->"9f1da868-7891-4500-83eb-b3a4cf34fbda"]
+}, Open  ]],
+
+Cell["\<\
+A cumulative plot shows the total number of floods up to each time point, \
+giving insight into how the frequency of floods has changed over time.\
+\>", "Text",
+ CellChangeTimes->{{3.933955487564905*^9, 
+  3.9339555090067186`*^9}},ExpressionUUID->"5c930747-5c36-40de-92b7-\
+be875264cb90"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"cumulativeFloods", "=", 
+   RowBox[{"Accumulate", "[", 
+    RowBox[{"sloveniaFloodsMidpoints", "[", 
+     RowBox[{"[", 
+      RowBox[{"All", ",", "2"}], "]"}], "]"}], "]"}]}], ";"}], "\n", 
+ RowBox[{"ListLinePlot", "[", 
+  RowBox[{
+   RowBox[{"Transpose", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"sloveniaFloodsMidpoints", "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", "1"}], "]"}], "]"}], ",", "cumulativeFloods"}], 
+     "}"}], "]"}], ",", 
+   RowBox[{"PlotStyle", "->", 
+    RowBox[{"RGBColor", "[", 
+     RowBox[{"0", ",", "0", ",", "1"}], "]"}]}], ",", 
+   RowBox[{"PlotMarkers", "->", "Automatic"}], ",", 
+   RowBox[{
+   "PlotLabel", "->", 
+    "\"\<Cumulative Number of Floods in Slovenia Over Time\>\""}], ",", 
+   RowBox[{"AxesLabel", "->", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Year\>\"", ",", "\"\<Cumulative Number of Floods\>\""}], 
+     "}"}]}], ",", 
+   RowBox[{"ImageSize", "->", "Large"}], ",", 
+   RowBox[{"Joined", "->", "True"}]}], "]"}]}], "Input",
+ CellChangeTimes->{{3.9339554402022943`*^9, 3.9339554402022943`*^9}},
+ CellLabel->"In[92]:=",ExpressionUUID->"e6d06d81-6bef-4cf1-939f-8ebce4cc49c7"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{{}, {}, 
+     {RGBColor[0, 0, 1], PointSize[
+       NCache[
+        Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+      StyleBox[
+       LineBox[{{1760., 1.}, {1780.5, 1.}, {1800.5, 2.}, {1820.5, 3.}, {
+        1840.5, 4.}, {1860.5, 7.}, {1880.5, 17.}, {1900.5, 31.}, {1920.5, 
+        43.}, {1940.5, 52.}, {1960.5, 75.}, {1980.5, 102.}, {2000.5, 129.}}],
+       FontFamily->"Arial"]}}, 
+    {RGBColor[0, 0, 1], PointSize[
+      NCache[
+       Rational[7, 360], 0.019444444444444445`]], AbsoluteThickness[1.6], 
+     StyleBox[GeometricTransformationBox[InsetBox[
+        FormBox[
+         StyleBox[
+          GraphicsBox[
+           {EdgeForm[None], DiskBox[{0, 0}]}],
+          StripOnInput->False,
+          GraphicsBoxOptions->{DefaultBaseStyle->Directive[
+            PointSize[
+             Rational[7, 360]], 
+            AbsoluteThickness[1.6], FontFamily -> "Arial", 
+            RGBColor[0, 0, 1]]}],
+         TraditionalForm], {0., 0.}, Automatic, Offset[6.272]], {{{1760., 
+       1.}}, {{1780.5, 1.}}, {{1800.5, 2.}}, {{1820.5, 3.}}, {{1840.5, 
+       4.}}, {{1860.5, 7.}}, {{1880.5, 17.}}, {{1900.5, 31.}}, {{1920.5, 
+       43.}}, {{1940.5, 52.}}, {{1960.5, 75.}}, {{1980.5, 102.}}, {{2000.5, 
+       129.}}}],
+      FontFamily->"Arial"]}}, {{}, {}}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{
+    FormBox["\"Year\"", TraditionalForm], 
+    FormBox["\"Cumulative Number of Floods\"", TraditionalForm]},
+  AxesOrigin->{1754.9895833333335`, 0},
+  BaseStyle->{FontFamily -> "Arial"},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImageSize->Large,
+  Method->{
+   "OptimizePlotMarkers" -> True, "OptimizePlotMarkers" -> True, 
+    "CoordinatesToolOptions" -> {"DisplayFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+        Identity[
+         Part[#, 1]], 
+        Identity[
+         Part[#, 2]]}& )}},
+  PlotLabel->FormBox[
+   "\"Cumulative Number of Floods in Slovenia Over Time\"", TraditionalForm],
+  PlotRange->{{1754.9895833333335`, 2000.5}, {0, 129.}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.933955441374934*^9, 3.9340007665058804`*^9, 
+  3.934012078835085*^9, 3.934012122288907*^9},
+ CellLabel->"Out[93]=",ExpressionUUID->"2e765159-b6c5-4a0c-9928-d92d582dabcb"]
+}, Open  ]],
+
+Cell["\<\
+A BarChart showing the number of floods in Slovenia across different time \
+intervals, illustrating the frequency of flood occurrences over the centuries\
+\>", "Text",
+ CellChangeTimes->{{3.9339557417028847`*^9, 
+  3.9339557449600782`*^9}},ExpressionUUID->"3b9155d4-f8e0-4fd7-8c83-\
+946061cbd423"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"BarChart", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+    "1", ",", "0", ",", "1", ",", "1", ",", "1", ",", "3", ",", "10", ",", 
+     "14", ",", "12", ",", "9", ",", "23", ",", "27", ",", "27"}], "}"}], ",", 
+   RowBox[{"ChartLabels", "->", 
+    RowBox[{"Placed", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<1750-1770\>\"", ",", "\"\<1771-1790\>\"", ",", 
+        "\"\<1791-1810\>\"", ",", "\"\<1811-1830\>\"", ",", 
+        "\"\<1831-1850\>\"", ",", "\"\<1851-1870\>\"", ",", 
+        "\"\<1871-1890\>\"", ",", "\"\<1891-1910\>\"", ",", 
+        "\"\<1911-1930\>\"", ",", "\"\<1931-1950\>\"", ",", 
+        "\"\<1951-1970\>\"", ",", "\"\<1971-1990\>\"", ",", 
+        "\"\<1991-2010\>\""}], "}"}], ",", "Below"}], "]"}]}], ",", 
+   RowBox[{
+   "PlotLabel", "->", 
+    "\"\<Number of Floods in Slovenia by Time Interval\>\""}], ",", 
+   RowBox[{"AxesLabel", "->", 
+    RowBox[{"{", 
+     RowBox[{"\"\<  Time Intervals\>\"", ",", "\"\<Number of Floods\>\""}], 
+     "}"}]}], ",", " ", 
+   RowBox[{"ImageSize", "\[Rule]", "Full"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.93393994423735*^9, 3.93393994423735*^9}, {
+  3.9339399833289013`*^9, 3.9339400403307486`*^9}, {3.933945397662096*^9, 
+  3.9339453980361476`*^9}},
+ CellLabel->"In[94]:=",ExpressionUUID->"2533dbd7-c8a4-4d4f-96c1-ab895a6117c6"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {Opacity[0], 
+    PointBox[{{0.2907501820830299, 0.}, {13.451201747997086`, 0.}}]}, {{}, 
+    {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.609], 
+     Thickness[Small]}], 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.609], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{0.5487982520029133, 0.}, {1.4512017479970867`, 1.}, 
+             "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{42.70483685661763, 95.1379791610892}, {
+            232.02450854332832`, 249.55468750000003`}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 1]& ,
+         TagBoxNote->"1"],
+        StyleBox["1", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[1, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.609], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{1.5487982520029133`, 0.}, {2.4512017479970867`, 0.},
+              "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{100.42086137965187`, 152.85400368412343`}, {
+            249.20468750000003`, 249.55468750000003`}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 0]& ,
+         TagBoxNote->"0"],
+        StyleBox["0", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[0, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.609], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{2.5487982520029133`, 0.}, {3.4512017479970867`, 1.},
+              "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{158.13688590268612`, 210.57002820715766`}, {
+            232.02450854332832`, 249.55468750000003`}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 1]& ,
+         TagBoxNote->"1"],
+        StyleBox["1", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[1, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.609], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{3.5487982520029133`, 0.}, {4.451201747997087, 1.}, 
+             "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{215.85291042572035`, 268.28605273019195`}, {
+            232.02450854332832`, 249.55468750000003`}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 1]& ,
+         TagBoxNote->"1"],
+        StyleBox["1", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[1, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.609], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{4.548798252002913, 0.}, {5.451201747997087, 1.}, 
+             "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{273.56893494875465`, 326.0020772532262}, {
+            232.02450854332832`, 249.55468750000003`}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 1]& ,
+         TagBoxNote->"1"],
+        StyleBox["1", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[1, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.609], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{5.548798252002913, 0.}, {6.451201747997087, 3.}, 
+             "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{331.28495947178885`, 383.7181017762604}, {
+            197.66415062998496`, 249.55468750000003`}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 3]& ,
+         TagBoxNote->"3"],
+        StyleBox["3", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[3, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.609], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            RectangleBox[{6.548798252002913, 0.}, {7.451201747997087, 10.}, 
+             "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{389.0009839948231, 441.4341262992947}, {
+            77.40289793328304, 249.5546875}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 10]& ,
+         TagBoxNote->"10"],
+        StyleBox["10", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[10, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.609], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{7.548798252002913, 0.}, {8.451201747997086, 14.}, 
+             "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{446.7170085178574, 499.1501508223289}, {
+            8.682182106596287, 249.55468750000003`}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 14]& ,
+         TagBoxNote->"14"],
+        StyleBox["14", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[14, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.609], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{8.548798252002912, 0.}, {9.451201747997086, 12.}, 
+             "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{504.43303304089153`, 556.8661753453632}, {
+            43.04254001993968, 249.55468750000006`}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 12]& ,
+         TagBoxNote->"12"],
+        StyleBox["12", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[12, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.609], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{9.548798252002912, 0.}, {10.451201747997086`, 9.}, 
+             "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{562.1490575639257, 614.5821998683974}, {
+            94.58307688995478, 249.55468750000006`}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 9]& ,
+         TagBoxNote->"9"],
+        StyleBox["9", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[9, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.609], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{10.548798252002912`, 0.}, {11.451201747997086`, 
+             23.}, "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{619.86508208696, 
+            672.2982243914316}, {-145.93942850344902`, 249.55468750000003`}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 23]& ,
+         TagBoxNote->"23"],
+        StyleBox["23", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[23, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.609], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{11.548798252002912`, 0.}, {12.451201747997086`, 
+             27.}, "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{677.5811066099943, 
+            730.0142489144661}, {-214.6601443301358, 249.55468750000003`}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 27]& ,
+         TagBoxNote->"27"],
+        StyleBox["27", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[27, {}], "Tooltip"]& ]}, 
+     {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.609], 
+      Thickness[Small]}], 
+      TagBox[
+       TooltipBox[
+        TagBox[
+         TagBox[
+          DynamicBox[{
+            FEPrivate`If[
+             CurrentValue["MouseOver"], 
+             EdgeForm[{
+               GrayLevel[0.5], 
+               AbsoluteThickness[1.5], 
+               Opacity[0.66]}], {}, {}], 
+            
+            RectangleBox[{12.548798252002912`, 0.}, {13.451201747997086`, 
+             27.}, "RoundingRadius" -> 0]},
+           
+           ImageSizeCache->{{735.2971311330284, 
+            787.7302734375002}, {-214.6601443301358, 249.55468750000003`}}],
+          "DelayedMouseEffectStyle"],
+         StatusArea[#, 27]& ,
+         TagBoxNote->"27"],
+        StyleBox["27", {}, StripOnInput -> False]],
+       Annotation[#, 
+        Style[27, {}], "Tooltip"]& ]}}, {}, {}}, {}, {
+    InsetBox["\<\"1750-1770\"\>", Offset[{0, -4}, {1., 0.}], 
+     ImageScaled[{0.5, 1}]], 
+    InsetBox["\<\"1771-1790\"\>", Offset[{0, -4}, {2., 0.}], 
+     ImageScaled[{0.5, 1}]], 
+    InsetBox["\<\"1791-1810\"\>", Offset[{0, -4}, {3., 0.}], ImageScaled[
+     {0.5, 1}]], 
+    InsetBox["\<\"1811-1830\"\>", Offset[{0, -4}, {4., 0.}], 
+     ImageScaled[{0.5, 1}]], 
+    InsetBox["\<\"1831-1850\"\>", Offset[{0, -4}, {5., 0.}], 
+     ImageScaled[{0.5, 1}]], 
+    InsetBox["\<\"1851-1870\"\>", Offset[{0, -4}, {6., 0.}], 
+     ImageScaled[{0.5, 1}]], 
+    InsetBox["\<\"1871-1890\"\>", Offset[{0, -4}, {7., 0.}], 
+     ImageScaled[{0.5, 1}]], 
+    InsetBox["\<\"1891-1910\"\>", Offset[{0, -4}, {8., 0.}], 
+     ImageScaled[{0.5, 1}]], 
+    InsetBox["\<\"1911-1930\"\>", Offset[{0, -4}, {9., 0.}], 
+     ImageScaled[{0.5, 1}]], 
+    InsetBox["\<\"1931-1950\"\>", Offset[{0, -4}, {10., 0.}], 
+     ImageScaled[{0.5, 1}]], 
+    InsetBox["\<\"1951-1970\"\>", Offset[{0, -4}, {11., 0.}], 
+     ImageScaled[{0.5, 1}]], 
+    InsetBox["\<\"1971-1990\"\>", Offset[{0, -4}, {12., 0.}], 
+     ImageScaled[{0.5, 1}]], 
+    InsetBox["\<\"1991-2010\"\>", Offset[{0, -4}, {13., 0.}], 
+     ImageScaled[{0.5, 1}]]}, {}, {}, 
+   StyleBox[
+    StyleBox[{
+      {Thickness[Tiny], 
+       LineBox[{{0.2907501820830299, 0.}, {13.714410779315367`, 0.}}], 
+       StyleBox[
+        {Thickness[Tiny], 
+         InsetBox["\<\"  Time Intervals\"\>", 
+          Offset[{10., 0.}, {13.451201747997086, 0.}], 
+          ImageScaled[{0, Rational[1, 2]}], Automatic, {1, 0}]}, 
+        "GraphicsLabel",
+        StripOnInput->False]}, 
+      StyleBox[{
+        {Thickness[Tiny], 
+         LineBox[{{0.5487982520029133, 0.}, 
+           Offset[{-1.102182119232618*^-15, -6.}, {0.5487982520029133, 0.}]}],
+          LineBox[{{13.451201747997086`, 0.}, 
+           Offset[{-1.102182119232618*^-15, -6.}, {13.451201747997086`, 
+            0.}]}], {{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, \
+{}}}, 
+        StyleBox[{}, "GraphicsLabel",
+         StripOnInput->False]}, "GraphicsTicks",
+       StripOnInput->False]},
+     Antialiasing->False], "GraphicsAxes",
+    StripOnInput->False]},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{False, True},
+  AxesLabel->{
+    FormBox["\"  Time Intervals\"", TraditionalForm], 
+    FormBox["\"Number of Floods\"", TraditionalForm]},
+  AxesOrigin->{0.2907501820830299, 0.},
+  BaseStyle->{FontFamily -> "Arial"},
+  CoordinatesToolOptions:>{"DisplayFunction" -> ({
+      Identity[
+       Part[#, 1]], 
+      Identity[
+       Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+      Identity[
+       Part[#, 1]], 
+      Identity[
+       Part[#, 2]]}& )},
+  DisplayFunction->Identity,
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImageSize->Full,
+  PlotLabel->FormBox[
+   "\"Number of Floods in Slovenia by Time Interval\"", TraditionalForm],
+  PlotRange->{{All, All}, {All, All}},
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{None, Automatic}]], "Output",
+ CellChangeTimes->{{3.933939984332181*^9, 3.9339400412068496`*^9}, 
+   3.9339453993662806`*^9, 3.934000766785962*^9, 3.93401212635172*^9},
+ CellLabel->"Out[94]=",ExpressionUUID->"2495704d-2462-4049-8a3b-8ebcdeb5c979"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Analysis", "Section",
+ CellChangeTimes->{{3.933955825030835*^9, 3.933955829302769*^9}, 
+   3.9340004793173866`*^9},ExpressionUUID->"44821199-51c4-4e25-b125-\
+cc65fee7e618"],
+
+Cell[CellGroupData[{
+
+Cell["Define Custom Functions", "Subsection",
+ CellChangeTimes->{{3.9340004857354393`*^9, 
+  3.9340005281924405`*^9}},ExpressionUUID->"c2a3daab-acea-4724-9f19-\
+38aedeec3f6d"],
+
+Cell["\<\
+Defining some custom functions that can help us analyze and manipulate the \
+data more effectively.\
+\>", "Text",
+ CellChangeTimes->{{3.934000548265543*^9, 
+  3.934000556017253*^9}},ExpressionUUID->"f8702e7d-9198-4992-9eda-\
+24198b27bf90"],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Calculate Yearly Flood Rate in Slovenia for specific Time Interval:\
+\>", "Subsubsection",
+ CellChangeTimes->{
+  3.9340005734584227`*^9, {3.9340056900354366`*^9, 
+   3.934005707957053*^9}},ExpressionUUID->"e37dde3d-1046-4e90-b96f-\
+c3aa9c1a3b4d"],
+
+Cell["\<\
+To analyze the flood data in Slovenia, we need to calculate the average \
+yearly flood rate for each specified time interval. This calculation helps us \
+understand how the frequency of floods in Slovenia has changed over time, \
+which is crucial for identifying trends and patterns.
+Defining the function:\
+\>", "Text",
+ CellChangeTimes->{
+  3.9340005984260225`*^9, 3.9340007045131264`*^9, {3.934000799629834*^9, 
+   3.9340008100363693`*^9}},ExpressionUUID->"8b367460-a3d9-4c93-9035-\
+8405e78099dd"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"averageFloodRateInSlovenia", "[", 
+   RowBox[{"{", 
+    RowBox[{"startYear_", ",", "endYear_", ",", "floods_"}], "}"}], "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", "duration", "}"}], ",", 
+    RowBox[{
+     RowBox[{"duration", "=", 
+      RowBox[{"endYear", "-", "startYear", "+", "1"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"startYear", ",", "endYear", ",", "floods", ",", 
+       RowBox[{"N", "[", 
+        RowBox[{"floods", "/", "duration"}], "]"}]}], "}"}]}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.9340007417078266`*^9, 3.934000757396021*^9}, {
+  3.9340007958652544`*^9, 
+  3.934000796764894*^9}},ExpressionUUID->"f1e3f336-18a1-4b7e-a2ce-\
+038ddbd2b945"],
+
+Cell["Applying the function", "Text",
+ CellChangeTimes->{{3.9340007894949417`*^9, 
+  3.9340007939346576`*^9}},ExpressionUUID->"75d901ae-6cad-4e72-9836-\
+9537a517c920"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"sloveniaFloodsWithRates", "=", 
+  RowBox[{"Map", "[", 
+   RowBox[{"averageFloodRateInSlovenia", ",", "sloveniaFloodsData"}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.934000822755097*^9, 3.934000824786644*^9}},
+ CellLabel->"In[20]:=",ExpressionUUID->"23b2b003-5104-4593-aade-659d16cd513b"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"1750", ",", "1770", ",", "1", ",", "0.047619047619047616`"}], 
+    "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1771", ",", "1790", ",", "0", ",", "0.`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1791", ",", "1810", ",", "1", ",", "0.05`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1811", ",", "1830", ",", "1", ",", "0.05`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1831", ",", "1850", ",", "1", ",", "0.05`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1851", ",", "1870", ",", "3", ",", "0.15`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1871", ",", "1890", ",", "10", ",", "0.5`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1891", ",", "1910", ",", "14", ",", "0.7`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1911", ",", "1930", ",", "12", ",", "0.6`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1931", ",", "1950", ",", "9", ",", "0.45`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1951", ",", "1970", ",", "23", ",", "1.15`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1971", ",", "1990", ",", "27", ",", "1.35`"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"1991", ",", "2010", ",", "27", ",", "1.35`"}], "}"}]}], 
+  "}"}]], "Output",
+ CellChangeTimes->{3.9340008252887044`*^9},
+ CellLabel->"Out[20]=",ExpressionUUID->"5b1ef304-7c1d-44bf-adce-ed9af9d7aaaf"]
+}, Open  ]],
+
+Cell["\<\
+The fourth element in each list of output is the average yearly flood rate, \
+indicating the average number of floods per year during that interval.
+Creating a table of output:\
+\>", "Text",
+ CellChangeTimes->{{3.9340009502553806`*^9, 
+  3.9340009898061247`*^9}},ExpressionUUID->"83cd77ba-f6d5-432f-9ca8-\
+d2a8e96dd244"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Grid", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Prepend", "[", "\[IndentingNewLine]", 
+    RowBox[{"sloveniaFloodsWithRates", ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<Start Year\>\"", ",", "\"\<End Year\>\"", ",", 
+       "\"\<Total Floods\>\"", ",", "\"\<Average Yearly Flood Rate\>\""}], 
+      "}"}]}], "\[IndentingNewLine]", "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Frame", "->", "All"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Background", "->", 
+    RowBox[{"{", 
+     RowBox[{"None", ",", 
+      RowBox[{"{", 
+       RowBox[{"LightGray", ",", 
+        RowBox[{"{", "White", "}"}]}], "}"}]}], "}"}]}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"Alignment", "->", "Center"}]}], "\[IndentingNewLine]", 
+  "]"}]], "Input",
+ CellChangeTimes->{
+  3.9340009948901973`*^9, {3.9340010303644705`*^9, 
+   3.9340010697079144`*^9}},ExpressionUUID->"b6522e6a-2221-46fc-977b-\
+4cfd89b45177"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"Start Year\"\>", "\<\"End Year\"\>", "\<\"Total Floods\"\>", \
+"\<\"Average Yearly Flood Rate\"\>"},
+    {"1750", "1770", "1", "0.047619047619047616`"},
+    {"1771", "1790", "0", "0.`"},
+    {"1791", "1810", "1", "0.05`"},
+    {"1811", "1830", "1", "0.05`"},
+    {"1831", "1850", "1", "0.05`"},
+    {"1851", "1870", "3", "0.15`"},
+    {"1871", "1890", "10", "0.5`"},
+    {"1891", "1910", "14", "0.7`"},
+    {"1911", "1930", "12", "0.6`"},
+    {"1931", "1950", "9", "0.45`"},
+    {"1951", "1970", "23", "1.15`"},
+    {"1971", "1990", "27", "1.35`"},
+    {"1991", "2010", "27", "1.35`"}
+   },
+   AutoDelete->False,
+   GridBoxAlignment->{"Columns" -> {{Center}}},
+   GridBoxBackground->{"Columns" -> {{None}}, "Rows" -> {
+       GrayLevel[0.85], {
+        GrayLevel[1]}}},
+   GridBoxFrame->{"Columns" -> {{True}}, "Rows" -> {{True}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{3.93400099584382*^9},
+ CellLabel->"Out[21]=",ExpressionUUID->"01e55079-786a-4d14-86b5-324711faa360"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["\<\
+Calculate Overall Average Number of Floods per Year in Slovenia (1750-2010)\
+\>", "Subsubsection",
+ CellChangeTimes->{{3.9340057373249884`*^9, 3.934005795381825*^9}, 
+   3.9340069054901605`*^9},ExpressionUUID->"3415caae-8291-4a93-b535-\
+689a80bcc6d8"],
+
+Cell["\<\
+This function calculates the average number of floods per year across the \
+entire time period from 1750 to 2010 in Slovenia. It provides insight into \
+the general frequency of floods over the given historical range. The average \
+is computed by dividing the total number of floods by the total number of \
+years represented in the dataset.
+Defining the function to calculate average number of floods per year in \
+Slovenia.\
+\>", "Text",
+ CellChangeTimes->{{3.9340058200315065`*^9, 3.934005883343337*^9}, {
+  3.9340069332390604`*^9, 
+  3.934006939422429*^9}},ExpressionUUID->"fda91428-29d7-42c2-8eef-\
+0d0c28e1494b"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"averageFloodsPerYear", "[", "data_List", "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"totalFloods", ",", "totalYears"}], "}"}], ",", 
+    RowBox[{
+     RowBox[{"totalFloods", "=", 
+      RowBox[{"Total", "[", 
+       RowBox[{"data", "[", 
+        RowBox[{"[", 
+         RowBox[{"All", ",", "3"}], "]"}], "]"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"totalYears", "=", 
+      RowBox[{"Total", "[", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"All", ",", "2"}], "]"}], "]"}], "-", 
+         RowBox[{"data", "[", 
+          RowBox[{"[", 
+           RowBox[{"All", ",", "1"}], "]"}], "]"}], "+", "1"}], ")"}], 
+       "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"N", "[", 
+      RowBox[{"totalFloods", "/", "totalYears"}], "]"}]}]}], "]"}]}]], "Input",
+ CellLabel->"In[50]:=",ExpressionUUID->"4451a9ea-ac35-424f-b098-f194242da526"],
+
+Cell["Applying the function on Slovenia floods data.", "Text",
+ CellChangeTimes->{{3.934005920825059*^9, 
+  3.9340059464796267`*^9}},ExpressionUUID->"c7b39d11-6da8-45cf-a20c-\
+3f2286a14a50"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"averageFloodsPerYear", "[", "sloveniaFloodsData", "]"}]], "Input",
+ CellChangeTimes->{{3.9340059631944904`*^9, 3.9340059647749786`*^9}},
+ CellLabel->"In[51]:=",ExpressionUUID->"8c2737fb-ee17-42f7-b9c6-e6034288fbe5"],
+
+Cell[BoxData["0.4942528735632184`"], "Output",
+ CellChangeTimes->{3.9340059652749777`*^9},
+ CellLabel->"Out[51]=",ExpressionUUID->"a8563fa2-b654-4f6a-aa80-6019e770e98d"]
+}, Open  ]],
+
+Cell["\<\
+The average number of floods per year over this time period is around 0.494, \
+indicating that, on average, there is slightly less than one flood per year \
+in Slovenia\
+\>", "Text",
+ CellChangeTimes->{
+  3.9340070384004855`*^9},ExpressionUUID->"a705d688-37a3-4445-8b04-\
+382754088ef4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Compare Global vs. Slovenia Flood Rates:", "Subsubsection",
+ CellChangeTimes->{{3.9340011172352953`*^9, 
+  3.9340011193174987`*^9}},ExpressionUUID->"79158a59-32ae-4dd7-9b27-\
+5b7e7ad608cb"],
+
+Cell["\<\
+This function will compare the number of floods in a given year globally with \
+the average flood rate in Slovenia for the corresponding time period.
+Defining the function.\
+\>", "Text",
+ CellChangeTimes->{{3.9340011512482004`*^9, 3.9340011773089666`*^9}, {
+  3.9340039973179665`*^9, 3.9340040610044336`*^9}, {3.9340041317681756`*^9, 
+  3.934004150864687*^9}, {3.934008730236*^9, 
+  3.934008737544465*^9}},ExpressionUUID->"d85e6fa3-8a4c-4ce8-a9ab-\
+902aa7d8d038"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+   RowBox[{"compareFloodRates", "[", 
+    RowBox[{
+    "sloveniaData_", ",", "globalData_", ",", "startYear_", ",", "endYear_"}],
+     "]"}], ":=", "\[IndentingNewLine]", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+      "sloveniaSelected", ",", "globalSelected", ",", "sloveniaAvg", ",", 
+       "globalAvg"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"(*", 
+      RowBox[{
+      "Select", " ", "the", " ", "relevant", " ", "data", " ", "for", " ", 
+       "Slovenia", " ", "and", " ", "Global", " ", "floods", " ", "based", 
+       " ", "on", " ", "the", " ", "specified", " ", "period"}], "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"sloveniaSelected", "=", "\[IndentingNewLine]", 
+       RowBox[{"Select", "[", 
+        RowBox[{"sloveniaData", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "1", "]"}], "]"}], ">=", "startYear"}], "&&", 
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "2", "]"}], "]"}], "<=", "endYear"}]}], "&"}]}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"globalSelected", "=", "\[IndentingNewLine]", 
+       RowBox[{"Select", "[", 
+        RowBox[{"globalData", ",", 
+         RowBox[{
+          RowBox[{
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "1", "]"}], "]"}], ">=", "startYear"}], "&&", 
+           RowBox[{
+            RowBox[{"#", "[", 
+             RowBox[{"[", "1", "]"}], "]"}], "<=", "endYear"}]}], "&"}]}], 
+        "]"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+       "Calculate", " ", "the", " ", "average", " ", "flood", " ", "rates", 
+        " ", "for", " ", "the", " ", "selected", " ", "periods"}], "*)"}], 
+      "\[IndentingNewLine]", 
+      RowBox[{"sloveniaAvg", "=", 
+       RowBox[{"averageFloodsPerYear", "[", "sloveniaSelected", "]"}]}], ";", 
+      "    ", 
+      RowBox[{"(*", " ", 
+       RowBox[{
+       "Pre", " ", "defined", " ", "custom", " ", "function", " ", 
+        "averageFloodsPerYear"}], " ", "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"globalAvg", "=", 
+       RowBox[{"N", "[", 
+        RowBox[{"Mean", "[", 
+         RowBox[{"globalSelected", "[", 
+          RowBox[{"[", 
+           RowBox[{"All", ",", "2"}], "]"}], "]"}], "]"}], "]"}]}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{"(*", 
+       RowBox[{
+       "Return", " ", "the", " ", "results", " ", "as", " ", "a", " ", "list",
+         " ", "of", " ", "averages"}], "*)"}], "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{"sloveniaAvg", ",", "globalAvg"}], "}"}]}]}], "]"}]}], 
+  "\n"}]], "Input",
+ CellChangeTimes->{{3.9340077521025887`*^9, 3.9340077521025887`*^9}, {
+  3.934008371444293*^9, 3.9340083807951403`*^9}, {3.93400857086949*^9, 
+  3.934008674001997*^9}},ExpressionUUID->"77d387ab-568d-4990-a7fe-\
+9f4012f9023d"],
+
+Cell["\<\
+The compareFloodRates function compares flood rates between Slovenia and \
+global data for a specified time period. It filters the datasets to include \
+only records within the given range, then calculates the average number of \
+floods per year for both Slovenia and the global dataset. The function \
+returns these averages as a list, allowing for direct comparison of flood \
+frequencies over the specified period.
+
+The specific time period from 1970 to 2010 is chosen because it provides a \
+common range that overlaps between the global and Slovenian datasets.\
+\>", "Text",
+ CellChangeTimes->{
+  3.934008509963356*^9, {3.9340088547656965`*^9, 
+   3.934008855928579*^9}},ExpressionUUID->"6a6a6dd7-7612-4d86-861c-\
+be5ac551d26c"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"averageSloveniaRate", ",", " ", "averageGlobalRate"}], "}"}], " ",
+   "=", " ", "\n", "  ", 
+  RowBox[{"N", "[", 
+   RowBox[{"compareFloodRates", "[", 
+    RowBox[{
+    "sloveniaFloodsData", ",", " ", "globalFloodsData", ",", " ", "1970", ",",
+      " ", "2010"}], "]"}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.9340077581578827`*^9, 3.9340077581578827`*^9}, {
+   3.934008541845848*^9, 3.934008553367942*^9}, 3.934008679504718*^9},
+ CellLabel->"In[63]:=",ExpressionUUID->"dc93e889-2ac0-428e-8d75-49d311cb7c32"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"1.35`", ",", "87.51219512195122`"}], "}"}]], "Output",
+ CellChangeTimes->{3.9340088749412317`*^9},
+ CellLabel->"Out[63]=",ExpressionUUID->"63fa3801-5ff1-4c04-acf0-4cfd80b0e906"]
+}, Open  ]],
+
+Cell["\<\
+The result {1.35, 87.5122} indicates that:
+
+Slovenia experienced an average of 1.35 floods per year from 1970 to 2010.
+Globally, the average number of floods per year during the same period was \
+approximately 87.51.
+
+This comparison shows that while Slovenia has a relatively lower average \
+flood rate, the global flood rate is significantly higher, reflecting the \
+larger scale and frequency of flood events worldwide.\
+\>", "Text",
+ CellChangeTimes->{
+  3.9340089155966797`*^9, {3.934009081830697*^9, 
+   3.9340090909397497`*^9}},ExpressionUUID->"29beb88f-affa-4057-827b-\
+d93e993cd5f0"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Statistical Analysis: Mean and Standard Deviation", "Subsection",
+ CellChangeTimes->{
+  3.934011469001568*^9},ExpressionUUID->"fda2edd9-c9c2-48fd-9994-\
+9ad3020fcc7b"],
+
+Cell["\<\
+To understand the central tendency and variability of flood occurrences.\
+\>", "Text",
+ CellChangeTimes->{{3.9340114965129538`*^9, 
+  3.934011530472828*^9}},ExpressionUUID->"44c0e876-fbee-4af2-8a36-\
+cb62142406bb"],
+
+Cell[CellGroupData[{
+
+Cell["Global Data:", "Subsubsection",
+ CellChangeTimes->{{3.9340115415556803`*^9, 
+  3.934011545970276*^9}},ExpressionUUID->"81c926db-234a-411c-afbb-\
+1b0e6920b4ef"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"globalFloodsMean", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{"Mean", "[", 
+     RowBox[{"globalFloodsData", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "2"}], "]"}], "]"}], "]"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"globalFloodsStdDev", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{"StandardDeviation", "[", 
+     RowBox[{"globalFloodsData", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "2"}], "]"}], "]"}], "]"}], "]"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.934011548314495*^9, 3.934011575124591*^9}, {
+  3.9340117147483644`*^9, 3.9340117163806267`*^9}},
+ CellLabel->"In[77]:=",ExpressionUUID->"2c2aaec1-54e7-4cc1-a8a4-16d2bc3a68bf"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Slovenia Data:", "Subsubsection",
+ CellChangeTimes->{{3.93401158193404*^9, 
+  3.93401158942982*^9}},ExpressionUUID->"59c3a4a5-3f6c-4844-8550-\
+f4ea3040c52a"],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"sloveniaFloodsMean", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{"Mean", "[", 
+     RowBox[{"sloveniaFloodsData", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "3"}], "]"}], "]"}], "]"}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"sloveniaFloodsStdDev", "=", 
+   RowBox[{"N", "[", 
+    RowBox[{"StandardDeviation", "[", 
+     RowBox[{"sloveniaFloodsData", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "3"}], "]"}], "]"}], "]"}], "]"}]}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.934011595846486*^9, 3.934011611968847*^9}, {
+  3.9340117107401605`*^9, 3.9340117125569215`*^9}},
+ CellLabel->"In[79]:=",ExpressionUUID->"75fdd6a3-cea5-463d-8484-dde27bfc11a4"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Results:", "Subsubsection",
+ CellChangeTimes->{{3.934012007624646*^9, 
+  3.93401201268058*^9}},ExpressionUUID->"ff26ad8c-ed11-40a4-a16f-\
+db29cffda409"],
+
+Cell["Create a Table to Display the Results", "Text",
+ CellChangeTimes->{
+  3.9340117283774204`*^9},ExpressionUUID->"31bfe6d3-7eb7-4ce2-8599-\
+ec94c2e5f24e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Define", " ", "the", " ", "data"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"floodsStatistics", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<Global Floods\>\"", ",", "globalFloodsMean", ",", 
+         "globalFloodsStdDev"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<Slovenia Floods\>\"", ",", "sloveniaFloodsMean", ",", 
+         "sloveniaFloodsStdDev"}], "}"}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Create", " ", "the", " ", "table"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Grid", "[", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"Prepend", "[", 
+      RowBox[{"floodsStatistics", ",", 
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<Dataset\>\"", ",", "\"\<Mean\>\"", ",", 
+         "\"\<Standard Deviation\>\""}], "}"}]}], "]"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Frame", "->", "All"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Background", "->", 
+      RowBox[{"{", 
+       RowBox[{"None", ",", 
+        RowBox[{"{", 
+         RowBox[{"LightGray", ",", 
+          RowBox[{"{", "White", "}"}]}], "}"}]}], "}"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Alignment", "->", "Center"}]}], "\[IndentingNewLine]", "]"}], 
+   "\n"}]}]], "Input",
+ CellChangeTimes->{{3.934011745328846*^9, 3.934011745328846*^9}, {
+  3.9340118152710285`*^9, 3.9340118453916473`*^9}},
+ CellLabel->"In[84]:=",ExpressionUUID->"1e271dd7-59fe-4692-a3ad-0cddd399c07d"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"Dataset\"\>", "\<\"Mean\"\>", "\<\"Standard Deviation\"\>"},
+    {"\<\"Global Floods\"\>", "106.18518518518519`", "64.71623810523414`"},
+    {"\<\"Slovenia Floods\"\>", "9.923076923076923`", "10.169083361358407`"}
+   },
+   AutoDelete->False,
+   GridBoxAlignment->{"Columns" -> {{Center}}},
+   GridBoxBackground->{"Columns" -> {{None}}, "Rows" -> {
+       GrayLevel[0.85], {
+        GrayLevel[1]}}},
+   GridBoxFrame->{"Columns" -> {{True}}, "Rows" -> {{True}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{3.934011746750371*^9, 3.934011815708442*^9, 
+  3.934011846438558*^9},
+ CellLabel->"Out[85]=",ExpressionUUID->"84953072-a849-4782-89ce-51aa91b01d0c"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{960, 472},
+WindowMargins->{{-5.5, Automatic}, {Automatic, -5.5}},
+Magnification:>0.7 Inherited,
+FrontEndVersion->"12.3 for Microsoft Windows (64-bit) (May 11, 2021)",
+StyleDefinitions->FrontEnd`FileName[{"Report"}, "StandardReport.nb", 
+  CharacterEncoding -> "UTF-8"],
+ExpressionUUID->"48eecf66-aa05-4717-92d3-0f5ca2ef8913"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 193, 3, 66, "Title",ExpressionUUID->"4ac3811b-c13b-4a14-9aaa-ae2ccac21e67"],
+Cell[776, 27, 229, 4, 23, "Subtitle",ExpressionUUID->"df447c3d-51e8-451f-b3d1-7ca0dc2b696d"],
+Cell[1008, 33, 189, 3, 29, "Author",ExpressionUUID->"40aa32af-969a-47ce-959a-a3a4222b3241"],
+Cell[1200, 38, 195, 4, 14, "Department",ExpressionUUID->"ddc31bf9-1f1e-4469-b86b-6ad51fde7029"],
+Cell[1398, 44, 176, 3, 33, "Date",ExpressionUUID->"cc3f3bb4-1609-46a8-aed7-c20a026b7f8f"],
+Cell[CellGroupData[{
+Cell[1599, 51, 155, 3, 49, "Section",ExpressionUUID->"b409098e-a374-4327-9c8e-1ace53e82441"],
+Cell[CellGroupData[{
+Cell[1779, 58, 215, 4, 23, "Subsection",ExpressionUUID->"1c875774-c545-40eb-804c-f6e6ee3c9fe6"],
+Cell[CellGroupData[{
+Cell[2019, 66, 570, 13, 41, "Input",ExpressionUUID->"61bafadd-f021-46bd-bc18-0d63ab0f86b7"],
+Cell[2592, 81, 4140, 124, 81, "Output",ExpressionUUID->"2e67d7d4-48ef-4c2a-ac41-f30dcf2f3d59"],
+Cell[6735, 207, 1573, 32, 81, "Output",ExpressionUUID->"638e7365-5f9d-40c3-91da-18aa56acf976"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8357, 245, 253, 5, 23, "Subsection",ExpressionUUID->"cdeb2554-de45-4000-9029-b5967cdae13f"],
+Cell[8613, 252, 307, 7, 23, "Text",ExpressionUUID->"28c1a775-51d4-46f4-af9d-9b0a4192cdaa"],
+Cell[CellGroupData[{
+Cell[8945, 263, 151, 3, 23, "Subsubsection",ExpressionUUID->"646a155d-51dd-440b-8572-ae7eceb2884f"],
+Cell[9099, 268, 272, 7, 39, "Text",ExpressionUUID->"09221a6d-3db5-4332-b85c-ed49c882b6a4"],
+Cell[CellGroupData[{
+Cell[9396, 279, 492, 11, 28, "Input",ExpressionUUID->"23351f6c-e84d-4e76-b6ce-f07032a91455"],
+Cell[9891, 292, 3624, 112, 68, "Output",ExpressionUUID->"e4be2e18-c655-42e3-a2e3-2dfde0ab0774"]
+}, Open  ]],
+Cell[13530, 407, 213, 5, 23, "Text",ExpressionUUID->"90deefa3-94b0-4887-a212-e0132fb9c3ea"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13780, 417, 177, 3, 23, "Subsubsection",ExpressionUUID->"0fee2695-b3d6-47ca-89bd-74f9546ca47b"],
+Cell[13960, 422, 238, 6, 39, "Text",ExpressionUUID->"0f0facb6-a7db-44d9-ac44-d3331637a87b"],
+Cell[CellGroupData[{
+Cell[14223, 432, 533, 12, 41, "Input",ExpressionUUID->"ce6896aa-97ed-4ed0-b639-2e5f6532ada8"],
+Cell[14759, 446, 942, 18, 41, "Output",ExpressionUUID->"b73e6bbd-eebd-4b4d-af79-c42d54205c6d"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15738, 469, 466, 10, 28, "Input",ExpressionUUID->"d561d3cd-b1ac-480d-9340-ba252eccc137"],
+Cell[16207, 481, 939, 18, 41, "Output",ExpressionUUID->"d606750b-92c8-4dae-8a7c-c393a7f2a787"]
+}, Open  ]],
+Cell[17161, 502, 228, 4, 23, "Text",ExpressionUUID->"d73d12cc-8304-4a17-9f97-d5ed0431336a"],
+Cell[17392, 508, 282, 5, 23, "Text",ExpressionUUID->"2342dde9-5063-4681-8ea4-e1483ec8b0bf"],
+Cell[CellGroupData[{
+Cell[17699, 517, 651, 14, 28, "Input",ExpressionUUID->"991584b0-d01c-4594-9928-fe924a68ac89"],
+Cell[18353, 533, 1895, 56, 41, "Output",ExpressionUUID->"410d0c54-c561-4bc2-8197-3d91ba854120"]
+}, Open  ]],
+Cell[20263, 592, 176, 3, 23, "Text",ExpressionUUID->"62590c28-f92c-40b2-81d6-49be2d89e51c"],
+Cell[CellGroupData[{
+Cell[20464, 599, 344, 6, 28, "Input",ExpressionUUID->"e5d7f4be-58b1-4008-bb16-de3136d6008a"],
+Cell[20811, 607, 1543, 43, 41, "Output",ExpressionUUID->"52b1eaf2-0bb9-4585-899c-76d7b06dfe2d"]
+}, Open  ]],
+Cell[22369, 653, 180, 3, 23, "Text",ExpressionUUID->"c2946e4d-f5a8-4dc3-b5e4-fc7c30557194"],
+Cell[CellGroupData[{
+Cell[22574, 660, 415, 8, 28, "Input",ExpressionUUID->"353e1479-7123-4cc1-8c47-ea8ce6e5d4dd"],
+Cell[22992, 670, 1231, 32, 41, "Output",ExpressionUUID->"abf83e54-fd70-49fd-bbce-9ab88cc5219e"]
+}, Open  ]],
+Cell[24238, 705, 256, 6, 23, "Text",ExpressionUUID->"e52bd42e-86a3-46d8-b416-5bab2e15fc47"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[24555, 718, 182, 3, 49, "Section",ExpressionUUID->"e421c315-a761-482f-918e-2fde31e360a2"],
+Cell[CellGroupData[{
+Cell[24762, 725, 166, 3, 23, "Subsection",ExpressionUUID->"6fa41555-02a9-4e67-9fec-3f2881e941b6"],
+Cell[CellGroupData[{
+Cell[24953, 732, 611, 12, 41, "Input",ExpressionUUID->"6a6795be-0bac-4e85-b0fc-cc80d8f5c6be"],
+Cell[25567, 746, 2032, 52, 267, "Output",ExpressionUUID->"b0dac89f-eb48-47d6-bef2-1e403fafaac1"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[27636, 803, 559, 11, 41, "Input",ExpressionUUID->"d0b81805-1f10-4c5f-9e95-01a0a5af6760"],
+Cell[28198, 816, 4818, 115, 267, "Output",ExpressionUUID->"6e0b2770-5a9e-4892-86aa-3d0931dc1e70"]
+}, Open  ]],
+Cell[33031, 934, 269, 6, 23, "Text",ExpressionUUID->"7d9610e1-beb5-41d5-8f0f-0968c0a96ef7"],
+Cell[CellGroupData[{
+Cell[33325, 944, 1118, 25, 81, "Input",ExpressionUUID->"89e9c94a-09fe-435f-941a-220b2d8b0c94"],
+Cell[34446, 971, 4581, 132, 247, "Output",ExpressionUUID->"6c443e18-c577-49fb-b8b4-7f7f0a5bc2b5"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[39076, 1109, 166, 3, 23, "Subsection",ExpressionUUID->"9b40a2bd-de82-45f3-8840-890d15905804"],
+Cell[39245, 1114, 294, 6, 23, "Text",ExpressionUUID->"ef5f01ba-fc30-4227-ae4d-7881587a0211"],
+Cell[CellGroupData[{
+Cell[39564, 1124, 724, 17, 28, "Input",ExpressionUUID->"83de4f5e-a6c5-485b-8fd9-6838736e0f21"],
+Cell[40291, 1143, 1225, 33, 41, "Output",ExpressionUUID->"ae92241a-461e-43be-807b-85f0c5e11ce0"]
+}, Open  ]],
+Cell[41531, 1179, 278, 6, 23, "Text",ExpressionUUID->"6295cfbf-6b71-49a8-861d-eb8b07de987a"],
+Cell[CellGroupData[{
+Cell[41834, 1189, 1054, 25, 55, "Input",ExpressionUUID->"8ba0bcb4-fb6a-403a-975f-3476d34618ef"],
+Cell[42891, 1216, 3494, 83, 267, "Output",ExpressionUUID->"9f1da868-7891-4500-83eb-b3a4cf34fbda"]
+}, Open  ]],
+Cell[46400, 1302, 298, 6, 23, "Text",ExpressionUUID->"5c930747-5c36-40de-92b7-be875264cb90"],
+Cell[CellGroupData[{
+Cell[46723, 1312, 1174, 30, 55, "Input",ExpressionUUID->"e6d06d81-6bef-4cf1-939f-8ebce4cc49c7"],
+Cell[47900, 1344, 2750, 68, 255, "Output",ExpressionUUID->"2e765159-b6c5-4a0c-9928-d92d582dabcb"]
+}, Open  ]],
+Cell[50665, 1415, 307, 6, 23, "Text",ExpressionUUID->"3b9155d4-f8e0-4fd7-8c83-946061cbd423"],
+Cell[CellGroupData[{
+Cell[50997, 1425, 1348, 30, 68, "Input",ExpressionUUID->"2533dbd7-c8a4-4d4f-96c1-ab895a6117c6"],
+Cell[52348, 1457, 14985, 414, 538, "Output",ExpressionUUID->"2495704d-2462-4049-8a3b-8ebcdeb5c979"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[67394, 1878, 178, 3, 49, "Section",ExpressionUUID->"44821199-51c4-4e25-b125-cc65fee7e618"],
+Cell[CellGroupData[{
+Cell[67597, 1885, 175, 3, 23, "Subsection",ExpressionUUID->"c2a3daab-acea-4724-9f19-38aedeec3f6d"],
+Cell[67775, 1890, 249, 6, 23, "Text",ExpressionUUID->"f8702e7d-9198-4992-9eda-24198b27bf90"],
+Cell[CellGroupData[{
+Cell[68049, 1900, 256, 6, 23, "Subsubsection",ExpressionUUID->"e37dde3d-1046-4e90-b96f-c3aa9c1a3b4d"],
+Cell[68308, 1908, 510, 10, 56, "Text",ExpressionUUID->"8b367460-a3d9-4c93-9035-8405e78099dd"],
+Cell[68821, 1920, 760, 20, 41, "Input",ExpressionUUID->"f1e3f336-18a1-4b7e-a2ce-038ddbd2b945"],
+Cell[69584, 1942, 167, 3, 23, "Text",ExpressionUUID->"75d901ae-6cad-4e72-9836-9537a517c920"],
+Cell[CellGroupData[{
+Cell[69776, 1949, 316, 6, 28, "Input",ExpressionUUID->"23b2b003-5104-4593-aade-659d16cd513b"],
+Cell[70095, 1957, 1358, 32, 41, "Output",ExpressionUUID->"5b1ef304-7c1d-44bf-adce-ed9af9d7aaaf"]
+}, Open  ]],
+Cell[71468, 1992, 330, 7, 39, "Text",ExpressionUUID->"83cd77ba-f6d5-432f-9ca8-d2a8e96dd244"],
+Cell[CellGroupData[{
+Cell[71823, 2003, 962, 23, 135, "Input",ExpressionUUID->"b6522e6a-2221-46fc-977b-4cfd89b45177"],
+Cell[72788, 2028, 1091, 27, 206, "Output",ExpressionUUID->"01e55079-786a-4d14-86b5-324711faa360"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[73928, 2061, 261, 5, 23, "Subsubsection",ExpressionUUID->"3415caae-8291-4a93-b535-689a80bcc6d8"],
+Cell[74192, 2068, 628, 12, 56, "Text",ExpressionUUID->"fda91428-29d7-42c2-8eef-0d0c28e1494b"],
+Cell[74823, 2082, 996, 27, 55, "Input",ExpressionUUID->"4451a9ea-ac35-424f-b098-f194242da526"],
+Cell[75822, 2111, 190, 3, 23, "Text",ExpressionUUID->"c7b39d11-6da8-45cf-a20c-3f2286a14a50"],
+Cell[CellGroupData[{
+Cell[76037, 2118, 239, 3, 28, "Input",ExpressionUUID->"8c2737fb-ee17-42f7-b9c6-e6034288fbe5"],
+Cell[76279, 2123, 169, 2, 28, "Output",ExpressionUUID->"a8563fa2-b654-4f6a-aa80-6019e770e98d"]
+}, Open  ]],
+Cell[76463, 2128, 296, 7, 23, "Text",ExpressionUUID->"a705d688-37a3-4445-8b04-382754088ef4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[76796, 2140, 195, 3, 23, "Subsubsection",ExpressionUUID->"79158a59-32ae-4dd7-9b27-5b7e7ad608cb"],
+Cell[76994, 2145, 473, 9, 39, "Text",ExpressionUUID->"d85e6fa3-8a4c-4ce8-a9ab-902aa7d8d038"],
+Cell[77470, 2156, 2957, 73, 188, "Input",ExpressionUUID->"77d387ab-568d-4990-a7fe-9f4012f9023d"],
+Cell[80430, 2231, 743, 14, 88, "Text",ExpressionUUID->"6a6a6dd7-7612-4d86-861c-be5ac551d26c"],
+Cell[CellGroupData[{
+Cell[81198, 2249, 563, 12, 41, "Input",ExpressionUUID->"dc93e889-2ac0-428e-8d75-49d311cb7c32"],
+Cell[81764, 2263, 217, 4, 28, "Output",ExpressionUUID->"63fa3801-5ff1-4c04-acf0-4cfd80b0e906"]
+}, Open  ]],
+Cell[81996, 2270, 602, 14, 104, "Text",ExpressionUUID->"29beb88f-affa-4057-827b-d93e993cd5f0"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[82647, 2290, 173, 3, 23, "Subsection",ExpressionUUID->"fda2edd9-c9c2-48fd-9994-9ad3020fcc7b"],
+Cell[82823, 2295, 224, 5, 23, "Text",ExpressionUUID->"44c0e876-fbee-4af2-8a36-cb62142406bb"],
+Cell[CellGroupData[{
+Cell[83072, 2304, 165, 3, 23, "Subsubsection",ExpressionUUID->"81c926db-234a-411c-afbb-1b0e6920b4ef"],
+Cell[83240, 2309, 696, 18, 41, "Input",ExpressionUUID->"2c2aaec1-54e7-4cc1-a8a4-16d2bc3a68bf"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[83973, 2332, 163, 3, 23, "Subsubsection",ExpressionUUID->"59c3a4a5-3f6c-4844-8550-f4ea3040c52a"],
+Cell[84139, 2337, 704, 18, 41, "Input",ExpressionUUID->"75fdd6a3-cea5-463d-8484-dde27bfc11a4"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[84880, 2360, 158, 3, 23, "Subsubsection",ExpressionUUID->"ff26ad8c-ed11-40a4-a16f-db29cffda409"],
+Cell[85041, 2365, 157, 3, 23, "Text",ExpressionUUID->"31bfe6d3-7eb7-4ce2-8599-ec94c2e5f24e"],
+Cell[CellGroupData[{
+Cell[85223, 2372, 1581, 42, 161, "Input",ExpressionUUID->"1e271dd7-59fe-4692-a3ad-0cddd399c07d"],
+Cell[86807, 2416, 768, 16, 60, "Output",ExpressionUUID->"84953072-a849-4782-89ce-51aa91b01d0c"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
