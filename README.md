@@ -12,3 +12,5 @@ Pri projektu bom uporabil računalniški program Wolfrma Mathematica.
 </ul>
 <br>
 <strong>Posnetek predstavitve:</strong>
+<br>
+<a href="https://www.dropbox.com/scl/fi/iprsvezofoxuv8kp0qp5s/bandicam-2024-08-31-19-30-37-423.mp4?rlkey=bjg3dsqaouch79cmcaelbezeg&st=05yzy5jb&dl=0">DROPBOX LINK</a>
